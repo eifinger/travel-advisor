@@ -1,0 +1,3 @@
+slackclient
+googlemaps
+watson-developer-cloud
