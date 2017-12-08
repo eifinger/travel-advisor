@@ -2,5 +2,6 @@ applications:
 - name: travel-advisor-bot
   memory: 256M
   instances: 1
+  buildpack: https://github.com/cloudfoundry/buildpack-python.git
   command: python TravelAdvisor.py
 no-route: true
