@@ -85,7 +85,7 @@ class TravelAdvisor:
                     return output['text'].split(self.AT_BOT)[1].strip().lower(), \
                            output['channel'], output['user'], True
                 else:
-                    if output and 'channel' in output and output['channel'].startswith("D") \
+                    if output and 'channel' in output and not isinstance(output['channel'],dict) and output['channel'].startswith("D") \
                     and 'type' in output and output['type'] == 'message' \
                     and 'user' in output and output['user'] != self.BOT_ID:
                         return output['text'], output['channel'], output['user'], False
