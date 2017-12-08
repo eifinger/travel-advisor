@@ -177,6 +177,16 @@ class TravelAdvisor:
 
 
 if __name__ == "__main__":
+    # Log version (git commit hash)
+    version = None
+    if os.path.isfile('VERSION'):
+        with open('VERSION') as f:
+            version = f.readline().replace("\n", "")
+            date = f.readline().replace("\n", "")
+            print("Running git commit: {}. This was last verified: {}".format(version, date))
+    else:
+        print("Could not find VERSION file")
+        
     bot = TravelAdvisor()
 
     READ_WEBSOCKET_DELAY = 0.1  # 1 second delay between reading from firehose

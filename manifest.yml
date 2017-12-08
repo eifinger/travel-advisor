@@ -1,0 +1,6 @@
+applications:
+- name: travel-advisor-bot
+  memory: 256M
+  instances: 1
+  command: python TravelAdvisor.py
+no-route: true
