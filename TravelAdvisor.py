@@ -186,7 +186,7 @@ if __name__ == "__main__":
             print("Running git commit: {}. This was last verified: {}".format(version, date))
     else:
         print("Could not find VERSION file")
-        
+
     bot = TravelAdvisor()
 
     READ_WEBSOCKET_DELAY = 0.1  # 1 second delay between reading from firehose
