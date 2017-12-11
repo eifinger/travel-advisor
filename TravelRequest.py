@@ -19,7 +19,7 @@ class TravelRequest:
     def check_current_travel(self, gmaps):
         self.last_checked = datetime.now()
         self.counter += 1
-        matrix = gmaps.get_distance_matrix(self.origin, self.destination)
+        matrix = gmaps.get_distance_matrix(self.origin["geocode"], self.destination["geocode"])
         self.distance = matrix['distance']
         self.duration = matrix['duration']
         self.duration_in_traffic = matrix['duration_in_traffic']

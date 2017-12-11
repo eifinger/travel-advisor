@@ -13,15 +13,31 @@ class GoogleWrapper:
                                             destination,
                                             mode="driving",
                                             departure_time=now,
+                                            language="de",
                                             traffic_model = "best_guess")
         distance = matrix['rows'][0]['elements'][0]['distance']
         duration = matrix['rows'][0]['elements'][0]['duration']
         duration_in_traffic = matrix['rows'][0]['elements'][0]['duration_in_traffic']
         return {"distance": distance, "duration": duration, "duration_in_traffic": duration_in_traffic}
 
-if __name__ == "__main__":
-    origin = 'Mainz'
-    destination ='SVA GmbH, Borsigstraße, Wiesbaden'
-    gmaps = GoogleWrapper()
-    result = gmaps.get_distance_matrix(origin=origin, destination=destination)
-    print(result)
+    def get_geocode_for_location(self, location_name):
+        result = self.gmaps.geocode(location_name)
+        locations = []
+        if len(result) > 0:
+            for place in result:
+                location = {}
+                location["address"] = place["formatted_address"]
+                location["geocode"] = place["geometry"]["location"]
+                locations.append(location)
+            return locations
+        else:
+            result = self.gmaps.places(location_name)
+            if len(result["results"]) > 0:
+                for place in result["results"]:
+                    location = {}
+                    location["address"] = place["formatted_address"]
+                    location["geocode"] = place["geometry"]["location"]
+                    locations.append(location)
+                return locations
+            else:
+                return None
